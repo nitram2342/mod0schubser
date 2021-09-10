@@ -82,8 +82,8 @@ forwarder.sslToSSL(14000, "www.example.org", 443, serverContextFactory)
 
 # #Example 1: Print all responses sent to the client and to the server
 def client_printer(data):
-    print "Server -> Client:"
-    print data  # or even better for binary data: print repr(data)
+    print("Server -> Client:")
+    print(data)  # or even better for binary data: print repr(data)
     return data
 
 
@@ -91,9 +91,9 @@ forwarder.setClientReceiveCallback(client_printer)
 
 
 def server_printer(data):
-    print "Client -> Server:"
+    print("Client -> Server:")
     data = data.replace("Host: localhost:14000", "Host: www.example.org")
-    print data  # or even better for binary data: print repr(data)
+    print(data)  # or even better for binary data: print repr(data)
     return data
 
 
@@ -137,7 +137,7 @@ forwarder.setServerReceiveCallback(server_printer)
 #         if '\n' in self.buffered_data or '}' in self.buffered_data:
 #             tmp = self.buffered_data
 #             self.buffered_data = ""
-#             print "Server:", repr(tmp)
+#             print("Server:", repr(tmp))
 #             return tmp
 #         else:
 #             return ""
@@ -152,7 +152,7 @@ forwarder.setServerReceiveCallback(server_printer)
 #         if '\n' in self.buffered_data or '}' in self.buffered_data:
 #             tmp = self.buffered_data
 #             self.buffered_data = ""
-#             print "Client:", repr(tmp)
+#             print("Client:", repr(tmp))
 #             return tmp
 #         else:
 #             return ""
@@ -173,10 +173,10 @@ forwarder.setServerReceiveCallback(server_printer)
 # #Problem here: we have to start one handler here, then proxyfuzz, then another handler here
 # #because we can not connect to close ports. Although for some reason it works without here... 
 # def startSecondHandler():
-#     print "Please start proxyfuzz. If you want to fuzz the client side:"
-#     print "python proxyfuzz.py -l 15005 -r localhost -p 15010 -c"
-#     print "If you want to fuzz the server side (both sides: omit last argument):"
-#     print "python proxyfuzz.py -l 15005 -r localhost -p 15010 -s "
+#     print("Please start proxyfuzz. If you want to fuzz the client side:")
+#     print("python proxyfuzz.py -l 15005 -r localhost -p 15010 -c")
+#     print("If you want to fuzz the server side (both sides: omit last argument):")
+#     print("python proxyfuzz.py -l 15005 -r localhost -p 15010 -s ")
 #     raw_input("Press enter when proxyfuzz is running...")
 #     keypath = "certs/serverkey.pem"
 #     certpath = "certs/servercert.pem"
@@ -189,10 +189,10 @@ forwarder.setServerReceiveCallback(server_printer)
 #     sock.connect(("localhost", 15005))
 #     sock.close()
 #     #END FIXME
-#     print "Use to check if it's working correctly:"
-#     print "openssl s_client -connect localhost:%i" % listenport
-#     print "Or:"
-#     print "https://localhost:%i/" % listenport
+#     print("Use to check if it's working correctly:")
+#     print("openssl s_client -connect localhost:%i" % listenport)
+#     print("Or:")
+#     print("https://localhost:%i/" % listenport)
 # from thread import start_new_thread
 # start_new_thread(startSecondHandler, ())
 
@@ -213,10 +213,10 @@ forwarder.setServerReceiveCallback(server_printer)
 # #Problem here: we have to start one handler here, then proxyfuzz, then another handler here
 # #because we can not connect to close ports
 # def startSecondHandler():
-#     print "Please start proxyfuzz. If you want to fuzz the client side:"
-#     print "python proxyfuzz.py -l 15005 -r localhost -p 15010 -c"
-#     print "If you want to fuzz the server side (both sides: omit last argument):"
-#     print "python proxyfuzz.py -l 15005 -r localhost -p 15010 -s "
+#     print("Please start proxyfuzz. If you want to fuzz the client side:")
+#     print("python proxyfuzz.py -l 15005 -r localhost -p 15010 -c")
+#     print("If you want to fuzz the server side (both sides: omit last argument):")
+#     print("python proxyfuzz.py -l 15005 -r localhost -p 15010 -s ")
 #     raw_input("Press enter when proxyfuzz is running...")
 #     keypath = "certs/serverkey.pem"
 #     certpath = "certs/servercert.pem"
@@ -229,10 +229,10 @@ forwarder.setServerReceiveCallback(server_printer)
 #     sock.connect(("localhost", 15005))
 #     sock.close()
 #     #END FIXME
-#     print "IMPORTANT: add to /etc/hosts --> %s 127.0.0.1" % remotehost
-#     print "Use to check if it's working correctly:"
-#     print "openssl s_client -connect %s:%i" % (remotehost, listenport)
-#     print "https://%s:%i/" % (remotehost, listenport)
+#     print("IMPORTANT: add to /etc/hosts --> %s 127.0.0.1" % remotehost)
+#     print("Use to check if it's working correctly:")
+#     print("openssl s_client -connect %s:%i" % (remotehost, listenport))
+#     print("https://%s:%i/" % (remotehost, listenport))
 # from thread import start_new_thread
 # start_new_thread(startSecondHandler, ())
 

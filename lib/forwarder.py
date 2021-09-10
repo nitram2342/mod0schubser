@@ -9,22 +9,22 @@ from lib import sslportforward
 # ssl.DefaultOpenSSLContextFactory instead
 
 def tcpToTcp(localport, remotehost, remoteport):
-    print "TCP on localhost:%i forwarding to %s:%i" % (localport, remotehost, remoteport)
+    print("TCP on localhost:%i forwarding to %s:%i" % (localport, remotehost, remoteport))
     return reactor.listenTCP(localport, portforward.ProxyFactory(remotehost, remoteport))
 
 
 def sslToTcp(localport, remotehost, remoteport, serverContextFactory):
-    print "SSL on localhost:%i forwarding to %s:%i" % (localport, remotehost, remoteport)
+    #print("SSL on localhost:%i forwarding to %s:%i" % (localport, remotehost, remoteport))
     return reactor.listenSSL(localport, portforward.ProxyFactory(remotehost, remoteport), serverContextFactory)
 
 
 def tcpToSSL(localport, remotehost, remoteport, clientContextFactory=ssl.ClientContextFactory()):
-    print "TCP on localhost:%i forwarding to SSL %s:%i" % (localport, remotehost, remoteport)
+    #print("TCP on localhost:%i forwarding to SSL %s:%i" % (localport, remotehost, remoteport))
     return reactor.listenTCP(localport, sslportforward.SSLProxyFactory(remotehost, remoteport, clientContextFactory))
 
 
 def sslToSSL(localport, remotehost, remoteport, serverContextFactory, clientContextFactory=ssl.ClientContextFactory()):
-    print "SSL on localhost:%i forwarding to SSL %s:%i" % (localport, remotehost, remoteport)
+    print("SSL on localhost:%i forwarding to SSL %s:%i" % (localport, remotehost, remoteport))
     return reactor.listenSSL(localport, sslportforward.SSLProxyFactory(remotehost, remoteport, clientContextFactory),
                              serverContextFactory)
 
